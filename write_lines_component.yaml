@@ -1,0 +1,21 @@
+ name: Write Lines
+ description: Writes text to a file.
+ 
+ inputs:
+ - {name: text, type: String}
+ 
+ outputs:
+ - {name: data, type: Data}
+ 
+ implementation:
+   container:
+     image: busybox
+     command:
+     - sh
+     - -c
+     - |
+       mkdir -p "$(dirname "$1")"
+       echo "$0" > "$1"
+     args:
+     - {inputValue: text}
+     - {outputPath: data}
